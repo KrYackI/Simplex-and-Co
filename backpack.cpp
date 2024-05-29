@@ -31,7 +31,7 @@ std::pair<int, std::vector<int>> fillBackpack(const std::vector<int>& weights,
       matrix(i, j) = std::max(matrix(i - 1, j),
                               remainingCapacity > 0 
                                 ? matrix(i, remainingCapacity - 1) + prices[i]
-                                : 0);
+                                : remainingCapacity == 0  ? prices[i] : 0);
     }
   }
   std::cout << "Prices = ";
