@@ -6,7 +6,7 @@
 #include <vector>
 
 #include "matrix.hpp"
-#include "print_functions.hpp"
+#include "utils.hpp"
 
 namespace lp {
 

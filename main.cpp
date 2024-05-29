@@ -4,7 +4,8 @@
 #include <iostream>
 #include <fstream>
 
-#include "lp.hpp"
+#include "simplex.hpp"
+#include "backpack.hpp"
 #include "data.hpp"
 #include "gomory_cut.hpp"
 
