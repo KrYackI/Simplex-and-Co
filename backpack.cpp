@@ -29,12 +29,16 @@ std::pair<int, std::vector<int>> fillBackpack(const std::vector<int>& weights,
     for (int j = 0; j < capacity; ++j) {
       int remainingCapacity = j + 1 - weights[i];
       matrix(i, j) = std::max(matrix(i - 1, j),
-                              remainingCapacity >= 0 
+                              remainingCapacity > 0 
                                 ? matrix(i, remainingCapacity - 1) + prices[i]
                                 : 0);
     }
   }
-
+  std::cout << "Prices = ";
+  printVector(prices);
+  std::cout << "Weights = ";
+  printVector(weights);
+  std::cout << " <= " << capacity << std::endl;
   printMatrix(matrix);
 
   // Backtrack to find the items to include in the backpack
