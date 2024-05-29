@@ -1,5 +1,12 @@
 #include <iostream>
+#include <vector>
+#include <string>
+#include <iostream>
+#include <fstream>
+
 #include "lp.hpp"
+#include "data.hpp"
+#include "gomory_cut.hpp"
 
 int main() {
   // Examples with the regular simplex method
@@ -39,5 +46,17 @@ int main() {
   auto backpackResult2 = lp::fillBackpack({3, 4, 6}, {2, 3, 5}, 17);
   lp::printResultFillBackpack(backpackResult2);
 
+    ifstream in;
+    in.open("input.txt");
+    Data d;
+    d.readUserData(in);
+    in.close();
+
+    ofstream out;
+    out.open("output.txt");
+    gomori::gomoriAlgorithm(&d, out);
+    out.close();
+    system("pause");
+    
   return 0;
 }
