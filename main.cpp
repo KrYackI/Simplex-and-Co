@@ -10,42 +10,44 @@
 
 int main() {
   // Examples with the regular simplex method
-  auto simplexResult1 = lp::simplexMethodMax({3, 2}, {{1, 1, 4}, {1, 3, 6}});
-  lp::printResultMaxSimplexMethod(simplexResult1);
+  auto simplex1 = lp::simplexMethodMax({3, 2}, {{1, 1, 4}, {1, 3, 6}});
+  lp::printResultMaxSimplexMethod(simplex1);
 
-  auto simplexResult2 = lp::simplexMethodMax(
+  auto simplex2 = lp::simplexMethodMax(
       {4, 5, 3}, {{2, 3, 1, 20}, {1, 2, 3, 25}, {2, 1, 3, 15}});
-  lp::printResultMaxSimplexMethod(simplexResult2);
+  lp::printResultMaxSimplexMethod(simplex2);
 
-  auto simplexResult3 = lp::simplexMethodMax(
+  auto simplex3 = lp::simplexMethodMax(
       {6, 2, 2.5, 4},
       {{5, 1, 0, 2, 1000}, {1, 0, 2, 1, 150}, {4, 2, 2, 1, 600}});
-  lp::printResultMaxSimplexMethod(simplexResult3);
+  lp::printResultMaxSimplexMethod(simplex3);
 
   // Examples with the two-phase simplex method
-  auto twoPhaseResult1 = lp::simplexMethodMaxTwoPhase(
+  auto twoPhase1 = lp::TwoPhaseSM(
       {3, -4}, {{-2, 1, 10}, {1, 3, 12}, {3, -1, 7}},
       {lp::OpCompare::LESS_EQ, lp::OpCompare::MORE_EQ, lp::OpCompare::MORE_EQ});
-  lp::printResultMaxSimplexMethod(twoPhaseResult1);
+  lp::printResultMaxSimplexMethod(twoPhase1);
 
-  auto twoPhaseResult2 = lp::simplexMethodMaxTwoPhase(
+  auto twoPhase2 = lp::TwoPhaseSM(
       {5, -3}, {{2, -1, 4}, {-1, 2, 1}, {2, 1, 5}},
       {lp::OpCompare::MORE_EQ, lp::OpCompare::LESS_EQ, lp::OpCompare::MORE_EQ});
-  lp::printResultMaxSimplexMethod(twoPhaseResult2);
+  lp::printResultMaxSimplexMethod(twoPhase2);
 
-  auto twoPhaseResult3 = lp::simplexMethodMaxTwoPhase(
-      {6, 2, 2.5, 4},
-      {{5, 1, 0, 2, 1000}, {4, 2, 2, 1, 600}, {1, 0, 2, 1, 150}},
+  auto twoPhase3 = lp::TwoPhaseSM(
+      {2, -3, -3, -4, -1},
+      {{3, 4, -4, -3, 5, 2}, {3, -3, 1, -2, 3, 3}, {-2, -1, 2, -3, -1, 1}},
       {lp::OpCompare::LESS_EQ, lp::OpCompare::MORE_EQ, lp::OpCompare::LESS_EQ});
-  lp::printResultMaxSimplexMethod(twoPhaseResult3);
+  lp::printResultMaxSimplexMethod(twoPhase3);
 
   // Examples with the backpack problem
-  auto backpackResult1 = lp::fillBackpack({4, 5, 3, 7, 6}, {5, 7, 4, 9, 8}, 16);
-  lp::printResultFillBackpack(backpackResult1);
+  auto backpack1 = lp::fillBackpack({4, 5, 3, 7, 6}, {5, 7, 4, 9, 8}, 15);
+  lp::printResultFillBackpack(backpack1);
 
-  auto backpackResult2 = lp::fillBackpack({3, 4, 6}, {2, 3, 5}, 17);
-  lp::printResultFillBackpack(backpackResult2);
+  auto backpack2 = lp::fillBackpack({3, 4, 6}, {2, 3, 5}, 15);
+  lp::printResultFillBackpack(backpack2);
 
+
+  // Example with the gomory cut
     ifstream in;
     in.open("input.txt");
     Data d;
@@ -56,7 +58,6 @@ int main() {
     out.open("output.txt");
     gomori::gomoriAlgorithm(&d, out);
     out.close();
-    system("pause");
     
   return 0;
 }

@@ -206,7 +206,7 @@ std::pair<double, std::vector<double>> simplexMethodMax(
 
 // simplex two phase
 
-Matrix<double> createMatrixSimplexMethodMaxTwoPhaze(
+Matrix<double> createMatrixTwoPhaseSM(
     const std::vector<double>& func,
     const std::vector<std::vector<double>>& limits,
     const std::vector<OpCompare>& op, size_t rows, size_t cols, size_t sizeFunc,
@@ -258,7 +258,7 @@ void checkBasis(Matrix<double>& matr, const std::vector<int>& basis) {
   }
 }
 
-std::pair<double, std::vector<double>> simplexMethodMaxTwoPhase(
+std::pair<double, std::vector<double>> TwoPhaseSM(
     const std::vector<double>& func,
     const std::vector<std::vector<double>>& limits,
     const std::vector<OpCompare>& op) {
@@ -274,7 +274,7 @@ std::pair<double, std::vector<double>> simplexMethodMaxTwoPhase(
   int indRowA = -1;
 
   auto basis = createBasisSimplexMethodMax(sizeFunc, countLim);
-  auto matr = createMatrixSimplexMethodMaxTwoPhaze(
+  auto matr = createMatrixTwoPhaseSM(
       func, limits, op, rows, cols, sizeFunc, countLim, countMoreEq, basis);
 
   firstPhaze(matr, basis, func, countMoreEq);

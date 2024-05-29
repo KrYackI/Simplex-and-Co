@@ -46,7 +46,7 @@ std::pair<double, std::vector<double>> simplexMethodMax(const std::vector<double
 
 enum class OpCompare { LESS_EQ, MORE_EQ };
 
-Matrix<double> createMatrixSimplexMethodMaxTwoPhaze(
+Matrix<double> createMatrixTwoPhaseSM(
     const std::vector<double>& func,
     const std::vector<std::vector<double>>& limits,
     const std::vector<OpCompare>& op, size_t rows, size_t cols, size_t sizeFunc,
@@ -57,7 +57,7 @@ void firstPhaze(Matrix<double>& matr, std::vector<int>& basis,
 
 void checkBasis(Matrix<double>& matr, const std::vector<int>& basis);
 
-std::pair<double, std::vector<double>> simplexMethodMaxTwoPhase(
+std::pair<double, std::vector<double>> TwoPhaseSM(
     const std::vector<double>& func,
     const std::vector<std::vector<double>>& limits,
     const std::vector<OpCompare>& op);
